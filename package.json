@@ -1,0 +1,36 @@
+{
+  "name": "authentication_controller-v1",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Node.js controller efficiently routes requests for login, registration, and user profile management to the relevant authentication microservice.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm run dev --prefix vite-frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "keywords": [
+    "electronics",
+    "ecommerce",
+    "online-store",
+    "MERN",
+    "NodeJS",
+    "MongoDB",
+    "MongoDB-Atlas"
+  ],
+  "author": "Bernard Major",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "colors": "^1.4.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "mongoose": "^7.5.3"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0",
+    "nodemon": "^3.0.1"
+  }
+}
