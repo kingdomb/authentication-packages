@@ -1,9 +1,9 @@
 // MODULES
 import { useState } from 'react'
 // STYLES
-import './JWTForm.scss';
+import './JWTLoginForm.scss';
 
-function JWTForm () {
+function JWTLoginForm () {
   const [authValues, setAuthValues] = useState({
     username: '',
     password: '',
@@ -48,6 +48,10 @@ function JWTForm () {
         <div className='input-control'>
           <button className='login-button' type='submit'>Log In</button>
         </div>
+        <p className="register-option">
+          <span>Don't have an account? </span>
+          <a href="" className="register-link">Signup now</a>
+        </p>
         <strong className='text-separator'>OR</strong>
         <figure className='input-control'>
           <img className='fingerprint-image' src='../../../public/assets/images/fingerprint-solid.svg'  />
@@ -58,4 +62,4 @@ function JWTForm () {
   )
 }
 
-export default JWTForm
+export { JWTLoginForm }

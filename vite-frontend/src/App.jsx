@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 // MODULES
-import JWTForm from './components/JWTFormComponent/JWTForm'
 import Header from './components/HeaderComponent/Header'
 import Footer from './components/FooterComponent/Footer'
 import Attributions from './components/AttributionsComponent/Attributions'

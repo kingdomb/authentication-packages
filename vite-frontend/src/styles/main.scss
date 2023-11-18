@@ -25,6 +25,7 @@ body {
   height: 100vh;
   @include vertical-list;
   flex-grow: 1;
+  border: 3px solid red;
 }
 
 
