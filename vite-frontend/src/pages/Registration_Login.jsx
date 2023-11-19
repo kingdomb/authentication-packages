@@ -10,7 +10,7 @@ function Registration_Login() {
     return registeredUserState
   }
 
-  console.log(showRegistrationForm);
+  console.log(showRegistrationForm());
 
   return (
     showRegistrationForm ? <RegistrationForm /> :
