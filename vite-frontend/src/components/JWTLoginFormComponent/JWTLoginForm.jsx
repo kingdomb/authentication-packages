@@ -1,15 +1,14 @@
 // MODULES
 import { useState } from 'react'
+import { RegistrationForm } from "../RegistrationFormComponent/RegistrationFormComponent";
 // STYLES
 import './JWTLoginForm.scss';
 
-function JWTLoginForm () {
+function JWTLoginForm (props) {
   const [authValues, setAuthValues] = useState({
     username: '',
     password: '',
   })
-
-
 
   const handleInputChange = (e) => {
     const updatedValues = { ...authValues, [e.target.name]: e.target.value };
@@ -26,8 +25,14 @@ function JWTLoginForm () {
     // console.log(this.inputNode.value)
   }
 
-  
+  const [registeredUser, setRegisteredUser] = useState(false)
 
+  const unregisteredUser = () => {
+    setRegisteredUser(true)
+    // eslint-disable-next-line react/prop-types
+    props.onUnregisteredUser(!registeredUser) // or pass true
+  }
+// console.log(registerUser)
   return (
     <div className='form-container'>
       <h1 className='form-header'>Log In</h1>
@@ -49,10 +54,17 @@ function JWTLoginForm () {
           <button className='login-button' type='submit'>Log In</button>
         </div>
         <p className="register-option">
-          <span>Don't have an account? </span>
-          <a href="" className="register-link">Signup now</a>
+          {
+            /* TODO FIX ERROR BELOW */ 
+          }
+          <span>Don't have an account? Signup </span>
+          <a href="/" onClick={unregisteredUser} className="register-link">now</a>
         </p>
         <strong className='text-separator'>OR</strong>
+        {
+          /* TODO files in the public directory are served at the root path.
+          Instead of /public/assets/images/fingerprint-solid.svg, use /assets/images/fingerprint-solid.svg.*/
+        }
         <figure className='input-control'>
           <img className='fingerprint-image' src='../../../public/assets/images/fingerprint-solid.svg'  />
           <figcaption className='fingerprint-label'>Login with fingerprint</figcaption>
