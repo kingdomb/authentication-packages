@@ -1,6 +1,5 @@
 // MODULES
 import { useState } from 'react'
-import { RegistrationForm } from "../RegistrationFormComponent/RegistrationFormComponent";
 // STYLES
 import './JWTLoginForm.scss';
 
@@ -17,7 +16,7 @@ function JWTLoginForm (props) {
   };
 
   const authenticateUser = e => {
-    e.preDefault()
+    e.preventDefault()
     console.log(authValues);
     // console.log(e.target[0].value)
     // console.log(e.target.elements.username.value)
@@ -25,14 +24,11 @@ function JWTLoginForm (props) {
     // console.log(this.inputNode.value)
   }
 
-  const [registeredUser, setRegisteredUser] = useState(false)
+  const unregisteredUser = (e) => {
+    e.preventDefault();
+      props.onUnregisteredUser(true);
+  };
 
-  const unregisteredUser = () => {
-    setRegisteredUser(true)
-    // eslint-disable-next-line react/prop-types
-    props.onUnregisteredUser(!registeredUser) // or pass true
-  }
-// console.log(registerUser)
   return (
     <div className='form-container'>
       <h1 className='form-header'>Log In</h1>
