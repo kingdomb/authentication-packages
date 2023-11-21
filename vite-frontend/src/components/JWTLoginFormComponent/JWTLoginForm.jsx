@@ -16,7 +16,7 @@ function JWTLoginForm (props) {
   };
 
   const authenticateUser = e => {
-    e.preventDefault()
+    e.preDefault()
     console.log(authValues);
     // console.log(e.target[0].value)
     // console.log(e.target.elements.username.value)
@@ -24,11 +24,14 @@ function JWTLoginForm (props) {
     // console.log(this.inputNode.value)
   }
 
-  const unregisteredUser = (e) => {
-    e.preventDefault();
-      props.onUnregisteredUser(true);
-  };
+  const [registerUser, setRegisteredUser] = useState(false)
 
+  const unregisteredUser = () => {
+  const newRegisteredUser = !registerUser;
+  setRegisteredUser(newRegisteredUser);
+  props.onUnregisteredUser(newRegisteredUser);
+};
+// console.log(registerUser)
   return (
     <div className='form-container'>
       <h1 className='form-header'>Log In</h1>

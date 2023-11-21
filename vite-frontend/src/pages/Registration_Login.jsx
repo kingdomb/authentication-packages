@@ -1,19 +1,20 @@
 // eslint-disable-next-line no-unused-vars
-import React, { useState } from 'react'
+import React from 'react'
 import { RegistrationForm } from "../components/RegistrationFormComponent/RegistrationFormComponent"
 import { JWTLoginForm } from "../components/JWTLoginFormComponent/JWTLoginForm";
 
 function Registration_Login() {
-
-  const [registerUser, setRegisteredUser] = useState(false)
+  {/*TODO WIP:Relocate CONDITIONAL logic to display registration form here by passing up register user state in function param*/}
 
   const showRegistrationForm = (registeredUserState) => {
-    setRegisteredUser(registeredUserState)
+    return registeredUserState
   }
 
+  console.log(showRegistrationForm());
+
   return (
-    registerUser ? <RegistrationForm /> :
-    <JWTLoginForm onUnregisteredUser={showRegistrationForm} />
+    showRegistrationForm ? <RegistrationForm /> :
+    <JWTLoginForm onUnregisteredUser={showRegistrationForm}/>
   )
 }
 
