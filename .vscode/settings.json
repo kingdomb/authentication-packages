@@ -4,6 +4,7 @@
     "clientid",
     "clientsecret",
     "deleteuser",
+    "keyloader",
     "myappname",
     "Onwnm",
     "registeruser"
