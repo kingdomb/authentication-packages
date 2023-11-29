@@ -1,27 +1,33 @@
 // MODULES
+import 'dotenv/config';
 import express from 'express';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 import cors from 'cors';
-import debug from 'debug'
-import { createRequire } from "module"; // Bring in the ability to create the 'require' method
+import debug from 'debug';
+import { createRequire } from 'module'; // Bring in the ability to create the 'require' method
+import { connectDB } from './config/db.js';
+import cookieParser from 'cookie-parser';
+import authProcess from './routes/AuthRoute';
+
 const require = createRequire(import.meta.url); // construct the require method
 //TODO: CREATE ENVIRONMENT CHECK
 const config = require('./config.dev.json');
-import 'dotenv/config'
-import { connectDB } from './config/db.js';
 
-// create port 
-const port = config.port
+
+// create port
+const port = config.port;
 
 // Initialize debug
 const debugLogger = debug('app:startup');
-debugLogger('SERVER1')
+debugLogger('SERVER1');
 
 // create an express server
 const app = express();
 
 // parse incoming req to JSON payload
 app.use(express.json());
+
+app.use(cookieParser())
 
 // Enable CORS for requests from http://localhost:4000
 // Allow methods: GET, POST and EX-include credentials
@@ -33,18 +39,12 @@ app.use(
   })
 );
 
-app.get('/', (req, res) => {
-  res.status(200).json({ message: "API is running"})
-});
-
-app.post('/authenticate', (req, res) => {
-  res.status(200).json({ message: 'API is running' });
-});
-
-// starter port
+// base route
+app.use('/api/v1', authProcess)
 
 
-// Connect to the MongoDB database
+// 1. Connect to the MongoDB database
+// 2. Start server
 connectDB()
   .then((urls_database) => {
     app.locals.urls_database = urls_database; // Make the database accessible in the app's locals
@@ -59,4 +59,3 @@ connectDB()
     console.error(`Error connecting to MongoDB: ${error.message}`);
     process.exit(1); // Exit the process if there's an error connecting to the database
   });
-
